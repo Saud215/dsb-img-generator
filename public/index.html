@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSB Viewer — Embroidery File Previewer</title>
+  <meta name="description" content="Local tool to preview embroidery .DSB stitch files in your browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>🧵 DSB Viewer</h1>
+    <p class="subtitle">Drop an embroidery <strong>.DSB</strong> file to preview its stitch pattern</p>
+  </header>
+
+  <main>
+    <!-- Drop Zone -->
+    <div id="drop-zone" tabindex="0" role="button" aria-label="Upload DSB file">
+      <div class="drop-zone-content">
+        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" y1="3" x2="12" y2="15" />
+        </svg>
+        <p class="drop-text">Drag &amp; drop your <strong>.DSB</strong> file here</p>
+        <span class="drop-divider">or</span>
+        <button id="browse-btn" type="button">Browse Files</button>
+      </div>
+      <input type="file" id="file-input" accept=".dsb" hidden />
+    </div>
+
+    <!-- Status -->
+    <div id="status" class="status hidden"></div>
+
+    <!-- Canvas Preview -->
+    <section id="canvas-section" class="hidden">
+      <div class="canvas-header">
+        <h2>Stitch Preview</h2>
+        <div class="header-actions">
+          <div class="color-picker-wrapper">
+            <label for="color-picker">Color</label>
+            <input type="color" id="color-picker" value="#ffffff" aria-label="Stitch Color" />
+          </div>
+          <span id="stitch-count" class="badge"></span>
+          <button id="download-png-btn" class="download-btn" type="button" aria-label="Download PNG image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            PNG
+          </button>
+          <button id="download-dst-btn" class="download-btn" type="button" aria-label="Download DST file">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            DST
+          </button>
+        </div>
+      </div>
+      <div class="canvas-wrapper">
+        <canvas id="stitch-canvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Runs 100% locally — no data leaves your machine.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
